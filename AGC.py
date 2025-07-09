@@ -1,18 +1,46 @@
 class Computer:
     def __init__(self, name, computer_type):
-        # ... setup code ...
+        self.name = name
+        self.computer_type = computer_type
         self.verbs = {}
         self.programs = {}
+        self.nouns = {}  
+        self.registers = {1: 0, 2: 0, 3: 0}  
+        self.truth_table = set()
         self.setup_programs_and_verbs()
+        self.setup_nouns()
+        self.setup_truth_table()
 
     def setup_programs_and_verbs(self):
-        self.programs[0] = self.program_Idler
-        self.programs[1] = self.program_boot
-        self.programs[2] = self.program_hello
-        self.verbs[37] = self.run_program
-        self.verbs[6] = self.display_data
+        self.programs[0] = self.
+        self.programs[1] = self.
+        self.programs[2] = self.
+        self.programs[6] = self.
+        self.programs[11] = self.
+        self.programs[15] = self.
+        self.programs[30] = self.
+        self.programs[40] = self.
+        self.programs[49] = self.
+        self.programs[50] = self.
+        self.verbs[4] = self.display_nouns  # Display Current Nouns in registers formatted as octal
+        self.verbs[6] = self.display_nouns  # Display Current Nouns in registers formatted as decimal Same as noun 4 input of function decicdes decimal or octal
+        self.verbs[16] = self.updatedisplay_nouns  # monitor (update) Current noun in registers formatted as a decimal it displays the noun data in the registers
+        
+    def setup_nouns(self):
+       
+        self.nouns[0] = "Idler"
+        
+        
+    def setup_truth_table(self):
+        self.truth_table = {
+            (37, 0), 
+           
+        }
 
     def execute_verb_noun(self, verb, noun):
+        if (verb, noun) not in self.truth_table:
+            print(f"Invalid VERB-NOUN pair: ({verb}, {noun})")
+            return
         verb_func = self.verbs.get(verb)
         if verb_func:
             verb_func(noun)
@@ -22,28 +50,17 @@ class Computer:
     def run_program(self, noun):
         program = self.programs.get(noun)
         if program:
-            program()
+            program(noun)
         else:
             print(f"Program {noun} not found.")
 
-    def display_data(self, noun):
-        print(f"Displaying data for noun {noun}")
-
-    def program_Idler(self):
-        print("Idler program running...")
-        # Simulate idling behavior
-    def program_boot(self):
-        r1 = 0
-        r2 = 0
-        r3 = 0
+    def program_boot(self, noun=None):
         print("Booting AGC...")
-        print(f"Registers: R1={r1}, R2={r2}, R3={r3}")
-        self.execute_verb_noun(37, 0)  # Runs boot program
-
-    def program_hello(self):
-        print("Hello from AGC!")
+       
+        self.registers[1] = 00000 
+        self.registers[2] = 00000
+        self.registers[3] = 00000
+        print(f"Registers: R1={self.registers[1]}, R2={self.registers[2]}, R3={self.registers[3]}")
     
-
-# Usage
 agc = Computer("CSM", "AGC")
-agc.execute_verb_noun(37, 1)  # Runs boot program
+agc.execute_verb_noun(37, 1)  
